@@ -1,0 +1,8 @@
+Turite sukurti backendą naudodami node.js, express, mongoose, body-parser.
+
+
+1. Apsirašykit duomenų modelį Scoreboard ( name, dateCreated, results_ids, scoreDirection )
+2. Apsirašykit duomenų modelį ScoreboardResult (scoreboard_id, points, title)
+3. Scoreboard endpointai: /createScoreboard (scoreDirection nurodomas "ASC" arba "DESC"), /editScoreboardName, /editScoreboardDirection,  /getAllScoreboards, /getScoreboardById.
+4. ScoreboardResult endpointai: /createScore (body pagalba perduoti scoreboard_id, also pass time, points & title), /editTitle, /getAllResults, /getAllResultsByScoreboardId (rykiuot nuo didžiausio points skaičiaus iki mažiausio), 
+5. Sukurti Thunder client kolekcijas kviesti šiuos endpointus bei būt pasiruošus viska pademonstruot.
