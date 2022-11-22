@@ -11,7 +11,7 @@ module.exports.CREATE_SCORE = function (req, res) {
   task.save().then((result) => {
     scbSchema
       .updateOne(
-        { id: req.body.scoreboard_id },
+        { _id: req.body.scoreboard_id },
         { $push: { results_ids: result._id.toString() } }
       )
       .exec();
@@ -41,19 +41,17 @@ module.exports.EDIT_SCORE_TITLE = (req, res) => {
 };
 
 module.exports.GET_SCOREBOARD_BY_ID_RESULTS = async (req, res) => {
-  let fff = 0;
+  let directionValue = 0;
   const currentScb = await scbSchema.findOne({ _id: req.params.id }).exec();
   if (currentScb.scoreDirection === "ASC") {
-    fff = 1;
+    directionValue = 1;
   } else {
-    fff = -1;
+    directionValue = -1;
   }
-  // console.log(currentScb.scoreDirection);
-  // console.log(fff);
 
   scbRSchema
     .find({ scoreboard_id: req.params.id })
-    .sort({ points: fff })
+    .sort({ points: directionValue })
     .then((results) => {
       return res.status(200).json({ results_ids: results });
     });
